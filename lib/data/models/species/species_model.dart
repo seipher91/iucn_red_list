@@ -8,11 +8,13 @@ part 'species_model.g.dart';
 )
 class SpeciesModel {
   SpeciesModel({
-    required this.scientific_name,
-    required this.class_name,
+    required this.scientificName,
+    required this.className,
+    required this.category,
   });
-  late final String scientific_name;
-  late final String class_name;
+  late final String scientificName;
+  late final String className;
+  late final String category;
 
   factory SpeciesModel.fromJson(Map<String, dynamic> json) =>
       _$SpeciesModelFromJson(json);

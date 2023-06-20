@@ -22,6 +22,11 @@ class AppRouter {
             builder: (context, state) =>
                 SpeciesPage(region: state.extra as String),
           ),
+          // GoRoute(
+          //   path: ConservationMeasuresPage.routeName,
+          //   builder: (context, state) =>
+          //       ConservationMeasuresPage(region: state.extra as String),
+          // ),
         ],
       );
 }

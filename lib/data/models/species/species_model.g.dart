@@ -7,12 +7,14 @@ part of 'species_model.dart';
 // **************************************************************************
 
 SpeciesModel _$SpeciesModelFromJson(Map<String, dynamic> json) => SpeciesModel(
-      scientific_name: json['scientific_name'] as String,
-      class_name: json['class_name'] as String,
+      scientificName: json['scientific_name'] as String,
+      className: json['class_name'] as String,
+      category: json['category'] as String,
     );
 
 Map<String, dynamic> _$SpeciesModelToJson(SpeciesModel instance) =>
     <String, dynamic>{
-      'scientific_name': instance.scientific_name,
-      'class_name': instance.class_name,
+      'scientific_name': instance.scientificName,
+      'class_name': instance.className,
+      'category': instance.category,
     };

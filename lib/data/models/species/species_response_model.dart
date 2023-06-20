@@ -22,8 +22,10 @@ class SpeciesResponseModel {
 
   List<Species> toEntity() {
     return [
-      ...result.map((e) =>
-          Species(className: e.class_name, scientificName: e.scientific_name))
+      ...result.map((e) => Species(
+          className: e.className,
+          scientificName: e.scientificName,
+          category: e.category))
     ];
   }
 }
