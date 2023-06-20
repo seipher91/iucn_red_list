@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:iucn_red_list/data/clients/region_client.dart';
+import 'package:iucn_red_list/data/clients/species_client.dart';
 import 'package:iucn_red_list/data/env.dart';
 
 @module
@@ -10,4 +11,7 @@ abstract class RetrofitInjectableModule {
 
   @lazySingleton
   RegionClient get regionClient => RegionClient(dio);
+
+  @lazySingleton
+  SpeciesClient get speciesClient => SpeciesClient(dio);
 }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:iucn_red_list/data/env.dart';
-import 'package:iucn_red_list/data/models/region_response_model.dart';
+import 'package:iucn_red_list/data/models/region/region_response_model.dart';
+
 import 'package:retrofit/retrofit.dart';
 
 part 'region_client.g.dart';

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:iucn_red_list/data/clients/region_client.dart';
-import 'package:iucn_red_list/data/models/region_response_model.dart';
+import 'package:iucn_red_list/data/models/region/region_response_model.dart';
 
 abstract class IRegionRemoteDatasource {
   Future<RegionResponseModel> getRegions();

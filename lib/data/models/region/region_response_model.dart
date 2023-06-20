@@ -1,4 +1,4 @@
-import 'package:iucn_red_list/data/models/region_model.dart';
+import 'package:iucn_red_list/data/models/region/region_model.dart';
 import 'package:iucn_red_list/domain/entities/region.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'region_response_model.g.dart';

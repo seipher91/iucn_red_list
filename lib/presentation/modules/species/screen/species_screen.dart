@@ -1,40 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:iucn_red_list/presentation/modules/home/cubit/region_cubit.dart';
+import 'package:iucn_red_list/presentation/modules/species/cubit/species_cubit.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class SpeciesScreen extends StatelessWidget {
+  const SpeciesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegionCubit, RegionState>(
+    return BlocBuilder<SpeciesCubit, SpeciesState>(
       builder: (context, state) {
         switch (state.runtimeType) {
-          case RegionInit:
+          case SpeciesInit:
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
 
-          case RegionLoading:
+          case SpeciesLoading:
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
-          case RegionError:
+          case SpeciesError:
             return Scaffold(
               body: Center(
-                child: Text((state as RegionError).message),
+                child: Text((state as SpeciesError).message),
               ),
             );
-          case RegionLoaded:
+          case SpeciesLoaded:
             return Scaffold(
               body: SafeArea(
                 child: ListView.builder(
-                  itemCount: state.regions.length,
+                  itemCount: state.species.length,
                   itemBuilder: (context, index) => ListTile(
-                      onTap: () => GoRouter.of(context).push("/species",
-                          extra: state.regions.elementAt(index).identifier),
-                      title: Text(state.regions.elementAt(index).name)),
+                      title:
+                          Text(state.species.elementAt(index).scientificName)),
                 ),
               ),
             );
