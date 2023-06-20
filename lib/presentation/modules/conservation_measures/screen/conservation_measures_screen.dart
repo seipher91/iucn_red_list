@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iucn_red_list/domain/entities/species.dart';
 import 'package:iucn_red_list/presentation/modules/species/cubit/species_cubit.dart';
 import 'package:go_router/go_router.dart';
 
-class SpeciesScreen extends StatelessWidget {
-  const SpeciesScreen({super.key});
+class ConservationMeasuresScreen extends StatelessWidget {
+  const ConservationMeasuresScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,30 +33,17 @@ class SpeciesScreen extends StatelessWidget {
                   itemCount: state.isFiltered
                       ? context.read<SpeciesCubit>().getListFiltered().length
                       : state.species.length,
-                  itemBuilder: (context, index) {
-                    Species item = state.isFiltered
-                        ? context
-                            .read<SpeciesCubit>()
-                            .getListFiltered()
-                            .elementAt(index)
-                        : state.species.elementAt(index);
-                    return ListTile(
-                      title: Text(item.scientificName),
-                      subtitle: state.isFiltered
-                          ? Text(item.conservationMeasures ?? "")
-                          : null,
-                    );
-                  },
+                  itemBuilder: (context, index) => ListTile(
+                      title: Text(state.isFiltered
+                          ? context
+                              .read<SpeciesCubit>()
+                              .getListFiltered()
+                              .elementAt(index)
+                              .scientificName
+                          : '${state.species.elementAt(index).scientificName} - ${state.species.elementAt(index).conservationMeasures}')),
                 ),
               ),
-              floatingActionButton: FloatingActionButton.extended(
-                onPressed: () {
-                  context.read<SpeciesCubit>().changeFilter();
-                },
-                label: const Text('Endangered Species'),
-              ),
             );
-
           default:
             return SizedBox();
         }

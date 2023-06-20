@@ -13,7 +13,7 @@ abstract class SpeciesState extends Equatable {
 }
 
 class SpeciesInit extends SpeciesState {
-  SpeciesInit() : super();
+  const SpeciesInit() : super();
 }
 
 class SpeciesLoading extends SpeciesState {

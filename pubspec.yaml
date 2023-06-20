@@ -21,6 +21,8 @@ dependencies:
   json_annotation: ^4.8.0
   dartz: ^0.10.1 #Return function
   go_router: ^6.0.9 #Manage app routing
+  loggy: ^2.0.3
+  flutter_loggy_dio: ^3.0.1
 
 
 dev_dependencies:

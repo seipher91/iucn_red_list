@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iucn_red_list/domain/entities/species.dart';
+import 'package:iucn_red_list/presentation/modules/conservation_measures/conservation_measures_page.dart';
 import 'package:iucn_red_list/presentation/modules/home/home_page.dart';
 import 'package:iucn_red_list/presentation/modules/species/species_page.dart';
 
@@ -22,11 +24,11 @@ class AppRouter {
             builder: (context, state) =>
                 SpeciesPage(region: state.extra as String),
           ),
-          // GoRoute(
-          //   path: ConservationMeasuresPage.routeName,
-          //   builder: (context, state) =>
-          //       ConservationMeasuresPage(region: state.extra as String),
-          // ),
+          GoRoute(
+            path: ConservationMeasuresPage.routeName,
+            builder: (context, state) =>
+                ConservationMeasuresPage(species: state.extra as Species),
+          ),
         ],
       );
 }

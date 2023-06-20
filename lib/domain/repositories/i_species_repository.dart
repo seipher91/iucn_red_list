@@ -4,4 +4,6 @@ import 'package:iucn_red_list/domain/entities/species.dart';
 
 abstract class ISpeciesRepository {
   Future<Either<Failure, List<Species>>> getSpeciesPerRegion(String region);
+  Future<Either<Failure, Species>> getConservationMeasures(
+      Species species, String region);
 }
