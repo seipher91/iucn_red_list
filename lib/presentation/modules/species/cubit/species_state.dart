@@ -3,13 +3,13 @@ part of 'species_cubit.dart';
 abstract class SpeciesState extends Equatable {
   final List<Species> species;
   final String region;
-  final bool isFiltered;
+  final String selectedFilter;
 
   const SpeciesState(
-      [this.species = const [], this.region = '', this.isFiltered = false]);
+      [this.species = const [], this.region = '', this.selectedFilter = 'ALL']);
 
   @override
-  List<Object?> get props => [species, region, isFiltered];
+  List<Object?> get props => [species, region, selectedFilter];
 }
 
 class SpeciesInit extends SpeciesState {
@@ -20,16 +20,16 @@ class SpeciesLoading extends SpeciesState {
   const SpeciesLoading(
       [List<Species> species = const [],
       String region = '',
-      bool isFiltered = false])
-      : super(species, region, isFiltered);
+      String selectedFilter = 'ALL'])
+      : super(species, region, selectedFilter);
 }
 
 class SpeciesLoaded extends SpeciesState {
   const SpeciesLoaded(
       [List<Species> species = const [],
       String region = '',
-      bool isFiltered = false])
-      : super(species, region, isFiltered);
+      String selectedFilter = 'ALL'])
+      : super(species, region, selectedFilter);
 }
 
 class SpeciesError extends SpeciesState {
@@ -37,6 +37,6 @@ class SpeciesError extends SpeciesState {
   const SpeciesError(this.message,
       [List<Species> species = const [],
       String region = '',
-      bool isFiltered = false])
-      : super(species, region, isFiltered);
+      String selectedFilter = 'ALL'])
+      : super(species, region, selectedFilter);
 }

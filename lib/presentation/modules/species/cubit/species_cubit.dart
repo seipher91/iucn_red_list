@@ -35,12 +35,12 @@ class SpeciesCubit extends Cubit<SpeciesState> {
     }
   }
 
-  void changeFilter() async {
+  void changeFilter(String valueFilter) async {
     List<Species> species = state.species;
     double start = 0;
     double unit = 100 / getListFiltered().length;
-    if (!state.isFiltered) {
-      emit(SpeciesLoading(state.species, state.region, state.isFiltered));
+    if (valueFilter == 'CR') {
+      emit(SpeciesLoading(state.species, state.region, valueFilter));
       for (var i = 0; i < species.length; i++) {
         if ((species.elementAt(i).category == "CR") &&
             (species[i].conservationMeasures == null)) {
@@ -48,7 +48,7 @@ class SpeciesCubit extends Cubit<SpeciesState> {
               .execute(species[i], state.region);
           result.fold(
             (l) => emit(SpeciesError("Errore fetch conservation measures",
-                species, state.region, state.isFiltered)),
+                species, state.region, valueFilter)),
             (r) {
               species[i] = r;
             },
@@ -58,17 +58,22 @@ class SpeciesCubit extends Cubit<SpeciesState> {
               "Charged {Species name:${species[i].scientificName}, measures:${species[i].conservationMeasures ?? ""}} | status:${start.toStringAsFixed(2)}%");
         }
       }
-      emit(SpeciesLoaded(species, state.region, !state.isFiltered));
+      emit(SpeciesLoaded(species, state.region, valueFilter));
     } else {
-      emit(SpeciesLoaded(state.species, state.region, !state.isFiltered));
+      emit(SpeciesLoaded(state.species, state.region, valueFilter));
     }
   }
 
   List<Species> getListFiltered() {
     return state.species.where((element) => element.category == 'CR').toList();
   }
-    List<Species> getListFilteredForClass() {
-    return state.species.where((element) => element.className == 'EN').toList();
+
+  List<Species> getListFilteredForClass() {
+    List<Species> speciesFiltered = state.species
+        .where(
+            (element) => element.className.toLowerCase().contains('mammalia'))
+        .toList();
+    return speciesFiltered;
   }
 
   // void goToConservationMeasures(Species specie) async {

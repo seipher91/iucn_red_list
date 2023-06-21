@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
             );
           case RegionLoaded:
             return Scaffold(
+              appBar: AppBar(title: const Text('IUCN Red List Regions')),
               body: SafeArea(
                 child: ListView.builder(
                   itemCount: state.regions.length,
@@ -37,6 +38,14 @@ class HomeScreen extends StatelessWidget {
                       title: Text(state.regions.elementAt(index).name)),
                 ),
               ),
+              floatingActionButton: FloatingActionButton.extended(
+                  onPressed: () {
+                    var randomRegion =
+                        (state.regions.toList()..shuffle()).first;
+                    GoRouter.of(context)
+                        .push("/species", extra: randomRegion.identifier);
+                  },
+                  label: const Text('Random')),
             );
 
           default:
